@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Carousel
 
 
 def index(request):
@@ -6,14 +7,9 @@ def index(request):
 
 
 def index2(request):
-    # carousel_img = {'c_imgs': ['assets/img/c1.jpg', 'assets/img/c2.jpg', 'assets/img/c3.jpg'],
-    # 'person': [{'nn': 'ron', 'xx':'ronx'}, {'nn': 'aidan', 'xx':'ronyy'}]}
-    carousel_stuff = {'stuff': [{'img': 'assets/img/c1.jpg', 'heading': 'heading1', 'is_active': 'active'},
-                                {'img': 'assets/img/c2.jpg', 'heading': 'heading2', 'is_active': ''},
-                                {'img': 'assets/img/c3.jpg', 'heading': 'heading3', 'is_active': ''}
-                                ]}
-
-    return render(request, "portfolio/index2.html", carousel_stuff)
+    carousel_model = Carousel.objects.all()
+    stuff_for_frontend = {'carousel_model': carousel_model}
+    return render(request, "portfolio/index2.html", stuff_for_frontend)
 
 # include templates
 

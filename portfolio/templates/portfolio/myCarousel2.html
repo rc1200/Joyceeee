@@ -2,19 +2,19 @@
 
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	        <ol class="carousel-indicators">
-		      {% for value in stuff %}
+		      {% for value in carousel_model %}
 				<li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" class="{{value.is_active}}"></li>
 	          {% endfor %}
 	        </ol>
         	<div class="carousel-inner">
 
-		      {% for value in stuff %}
+		      {% for value in carousel_model %}
 	          <div class="carousel-item {{value.is_active}}">
 	            <img class="second-slide" src="{% static value.img %}" alt="Second slide">
 	            <div class="container">
-	              <div class="carousel-caption text-left">
-	                <h1>{{ value.heading }}</h1>
-	                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+	              <div class="carousel-caption {{value.text_align}}">
+	                <h1>{{ value.Heading }}</h1>
+	                <p>{{ value.text | linebreaksbr }}</p>
 	                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
 	              </div>
 	            </div>
