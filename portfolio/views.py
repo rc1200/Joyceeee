@@ -7,7 +7,7 @@ def index(request):
 
 
 def index2(request):
-    carousel_model = Carousel.objects.all()
+    carousel_model = Carousel.objects.all().order_by('carousel_num')
     stuff_for_frontend = {'carousel_model': carousel_model}
     return render(request, "portfolio/index2.html", stuff_for_frontend)
 

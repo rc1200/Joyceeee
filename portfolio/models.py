@@ -2,7 +2,8 @@ from django.db import models
 
 
 class Carousel(models.Model):
-    Heading = models.CharField(max_length=200)
+    heading = models.CharField(max_length=200)
+    carousel_num = models.IntegerField(default=99)
     img = models.CharField(max_length=200)
     is_active = models.CharField(max_length=10, null=True, blank=True)
     text = models.TextField()
