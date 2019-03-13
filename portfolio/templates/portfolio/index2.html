@@ -6,12 +6,11 @@
 
 {% block content %}
 
+
 		      {% for value in carousel_model %}
-				{{value.Heading}}
-				{{value.img}}
-				{{value.is_active}}
-				{{value.text}}
+	                <h1>{{ value.heading }}</h1>
 	          {% endfor %}
+
 
   		{% include  'portfolio/myCarousel2.html' %}
   		{% include  'portfolio/marketing.html' %}
