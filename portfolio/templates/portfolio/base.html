@@ -21,15 +21,16 @@
   <body>
 
 
-  	{% include  'portfolio/header.html' %}
-  	<main role="main">
 
-  		{% include  'portfolio/myCarousel.html' %}
-  		{% include  'portfolio/marketing.html' %}
-  		{% include  'portfolio/featurettes.html' %}
-  		{% include  'portfolio/footer.html' %}
 
-  	</main>
+    {% include  'portfolio/header.html' %}
+    <main role="main">
+    {% block content %}
+
+
+
+    {% endblock %}
+    </main>
 
 	    <!-- FOOTER -->
 
