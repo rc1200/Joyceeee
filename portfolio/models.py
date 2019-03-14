@@ -9,6 +9,7 @@ class Carousel(models.Model):
     is_active = models.CharField(max_length=10, null=True, blank=True)
     text = models.TextField()
     text_align = models.CharField(max_length=20, default='text-right', null=True, blank=True)
+    button_text = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.heading
+        return '{} : {} : {}'.format(str(self.carousel_num), self.is_active, self.heading)

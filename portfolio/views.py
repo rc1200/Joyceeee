@@ -7,9 +7,16 @@ def index(request):
 
 
 def index2(request):
+    # ensure that the only active record is the one where carousel_num = 1
+    Carousel.objects.all().update(is_active=None)
+    Carousel.objects.filter(carousel_num=1).update(is_active='active')
     carousel_model = Carousel.objects.all().order_by('carousel_num')
     stuff_for_frontend = {'carousel_model': carousel_model}
     return render(request, "portfolio/index2.html", stuff_for_frontend)
+
+def index3(request):
+    return render(request, "portfolio/index3.html")
+
 
 # include templates
 

@@ -6,13 +6,9 @@
 
 {% block content %}
 
-
-		      {% for value in carousel_model %}
-	                <h1>{{ value.heading }}</h1>
-	          {% endfor %}
-
-
+		
   		{% include  'portfolio/myCarousel2.html' %}
+ 		{% include  'portfolio/contactModalForm.html' %}
   		{% include  'portfolio/marketing.html' %}
   		{% include  'portfolio/featurettes.html' %}
   		{% include  'portfolio/footer.html' %}

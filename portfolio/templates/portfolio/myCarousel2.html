@@ -15,7 +15,13 @@
 	              <div class="carousel-caption {{value.text_align}}">
 	                <h1>{{ value.heading }}</h1>
 	                <p>{{ value.text | linebreaksbr }}</p>
-	                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+
+	                {% if forloop.counter0 == 0 %}
+	                	<p>{% include  'portfolio/contactModalFormButton.html' %}</p>
+	                {% else %}
+	                	<p><a class="btn btn-lg btn-primary" href="#" role="button">{{ value.button_text }}</a></p>
+	                {% endif %}
+
 	              </div>
 	            </div>
 	          </div>
