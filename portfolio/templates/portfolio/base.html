@@ -17,12 +17,23 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'assets/css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/gallery.css' %}" rel="stylesheet">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+    <script src="{% static 'assets/js/gallery/gallery.js' %}"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+
   </head>
   <body>
 
 
 
-
+    {% include  'portfolio/contactModalForm.html' %}
     {% include  'portfolio/header.html' %}
     <main role="main">
     {% block content %}
@@ -47,6 +58,9 @@
 
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="{% static 'assets/js/vendor/holder.min.js' %}"></script>
+
+
+    <script src="{% static 'assets/js/gallery/gallery.js' %}"></script>
 
   </body>
 </html>

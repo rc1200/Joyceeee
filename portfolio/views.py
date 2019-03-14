@@ -19,6 +19,9 @@ def index3(request):
     return render(request, "portfolio/index3.html")
 
 
+def gallery(request):
+    return render(request, "portfolio/gallery.html")
+
 # include templates
 
 

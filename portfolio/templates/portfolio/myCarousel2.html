@@ -19,7 +19,7 @@
 	                {% if value.carousel_num == 0 %}
 	                	<p>{% include  'portfolio/contactModalFormButton.html' %}</p>
 	                {% else %}
-	                	<p><a class="btn btn-lg btn-primary" href="#" role="button">{{ value.button_text }}</a></p>
+	                	<p><a class="btn btn-lg btn-primary" href="{% url 'portfolio:gallery' %}" role="button">{{ value.button_text }}</a></p>
 	                {% endif %}
 
 	              </div>
