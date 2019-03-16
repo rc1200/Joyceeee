@@ -13,3 +13,8 @@ class Carousel(models.Model):
 
     def __str__(self):
         return '{} : {} : {}'.format(str(self.carousel_num), self.is_active, self.heading)
+
+
+class ContactMe(models.Model):
+    senderEmail = models.EmailField('Your Email', max_length=70)
+    message = models.TextField()
