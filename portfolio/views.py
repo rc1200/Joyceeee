@@ -13,6 +13,7 @@ def index2(request):
     carousel_model = Carousel.objects.all().order_by('carousel_num')
     stuff_for_frontend = {'carousel_model': carousel_model, 'form': ContactMeForm()}
     return render(request, "portfolio/index2.html", stuff_for_frontend)
+    # return render(request, "portfolio/index2.html",  {'form': ContactMeForm()})
 
 
 def index3(request):
