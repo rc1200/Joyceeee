@@ -138,4 +138,13 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True # if use this; TLS the EMAIL_PORT value is 587 can only use either TLS or SSL
+EMAIL_HOST=config('EMAIL_HOST')
+EMAIL_HOST_USER=config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+# EMAIL_USE_SSL=config('EMAIL_USE_SSL')  #if you use SSL the port value will have to be 465
+
+
 django_heroku.settings(locals())

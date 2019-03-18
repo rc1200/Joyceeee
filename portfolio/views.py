@@ -1,9 +1,35 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Carousel
 from .forms import ContactMeForm
+from django.conf import settings
+from django.core.mail import send_mail
+from django.contrib import messages
+
+from django.http import HttpResponse, HttpResponseRedirect
+
+def thankyou(request):
+    form = ContactMeForm(request.POST or None)
+
+    if form.is_valid():  # ensure the form has clean data passed
+
+        messages.success(request, 'thank you we will contact you')
+
+        save_it = form.save(commit=False)
+        # save_it.save()
+        # send email
+        subject = 'Message from Client'
+        message = form.cleaned_data['message']
+        from_email = settings.EMAIL_HOST_USER
+        to_list = [save_it.senderEmail, settings.EMAIL_HOST_USER]
+        send_mail(subject, message, from_email, to_list, fail_silently=False,)
+
+        messages.success(request, 'thank you we will contact you')
+        return HttpResponseRedirect('/', {'form': ContactMeForm()})
+
 
 def index(request):
-    return render(request, "portfolio/index.html",  {'form': ContactMeForm()})
+    messages.success(request, 'thank you we will contact you')
+    return render(request, "portfolio/index.html", {'form': ContactMeForm()})
 
 
 def index2(request):
@@ -17,29 +43,19 @@ def index2(request):
 
 
 def index3(request):
-
     if request.method == 'POST':
         form = ContactMeForm(request.POST)  # if post then capture all that data and store it in an object
         if form.is_valid():  # ensure the form has clean data passed
             print(form.cleaned_data['senderEmail'])
             print(form.cleaned_data['message'])
 
-            # post = form.save(commit=False)
-            # post.author = request.user
-            # # post.published_date = timezone.now()
-            # post.save()
-            # # return redirect('post_detail', pk=post.pk)
-            # return redirect('post_detail', pk=post.pk)
     else:
         pass
 
     return render(request, "portfolio/index3.html", {'form': ContactMeForm()})
 
 
-
-
 def contactMeLogic(request):
-
     if request.method == 'POST':
         form = ContactMeForm(request.POST)  # if post then capture all that data and store it in an object
         if form.is_valid():  # ensure the form has clean data passed
@@ -51,6 +67,3 @@ def contactMeLogic(request):
 def gallery(request):
     contactMeLogic(request)
     return render(request, "portfolio/gallery.html", {'form': ContactMeForm()})
-
-
-
