@@ -92,7 +92,8 @@ DATABASES = {
 DATABASES['default'] = dj_database_url.config(default=config('postgres'))
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
-
+# change postgres credentials
+# heroku pg:credentials:rotate DATABASE -a joyceeee
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
