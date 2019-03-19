@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item {% ifequal request.path '/index2'%} active {% endifequal%}">
-              <a class="nav-link" href="{% url 'portfolio:index2' %}">Home (still in development)<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'portfolio:index2' %}">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {% ifequal request.path '/gallery'%} active {% endifequal%}">
               <a class="nav-link" href="{% url 'portfolio:gallery' %}">Gallery</a>
