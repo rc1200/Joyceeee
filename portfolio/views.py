@@ -12,8 +12,6 @@ def thankyou(request):
 
     if form.is_valid():  # ensure the form has clean data passed
 
-        messages.success(request, 'thank you we will contact you')
-
         save_it = form.save(commit=False)
         # save_it.save()
         # send email
@@ -23,12 +21,10 @@ def thankyou(request):
         to_list = [save_it.senderEmail, settings.EMAIL_HOST_USER]
         send_mail(subject, message, from_email, to_list, fail_silently=False,)
 
-        messages.success(request, 'thank you we will contact you')
         return HttpResponseRedirect('/', {'form': ContactMeForm()})
 
 
 def index(request):
-    messages.success(request, 'thank you we will contact you')
     return render(request, "portfolio/index.html", {'form': ContactMeForm()})
 
 

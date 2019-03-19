@@ -10,10 +10,12 @@
 
 		      {% for value in carousel_model %}
 	          <div class="carousel-item {{value.is_active}}">
-	            <img class="second-slide" src="{% static value.img %}" alt="Second slide">
+				{% if value.image %}
+	            <img class="second-slide" src="{{ value.image.url }}" alt="Second slide">
+				{% endif %}
 	            <div class="container">
 	              <div class="carousel-caption {{value.text_align}}">
-	                <h1>{{ value.heading }}</h1>
+	                <h1>{{ value.heading }} {{ value.image }}</h1>
 	                <p>{{ value.text | linebreaksbr }}</p>
 
 	                {% if value.carousel_num == 0 %}
