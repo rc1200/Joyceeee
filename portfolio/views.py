@@ -30,11 +30,11 @@ class FormMixin(forms.Form):
 
 # class instead to speed up production
 # NOTE: using the mixin for the form and content
-class Index3(GetContentMixin, FormMixin, FormView):
+class IndexView(GetContentMixin, FormMixin, FormView):
     template_name = "portfolio/index2.html" # define the template to use
 
 
-class gallery3(GetContentMixin, FormMixin, FormView):
+class GalleryView(GetContentMixin, FormMixin, FormView):
     template_name = "portfolio/gallery.html" # define the template to use
 
 
