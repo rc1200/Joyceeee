@@ -1,19 +1,53 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Carousel
-from .forms import ContactMeForm
 from django.conf import settings
 from django.core.mail import send_mail
-from django.contrib import messages
-
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import  FormView
+from .models import Carousel
+from .forms import ContactMeForm
+from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
+
+
+
+# use content mixin instead since we are expanding the base and just need to call the template vs having to explictly
+# call the dictionary
+class GetContentMixin(object):
+    mixin_model = Carousel
+
+    def get_context_data(self, **kwargs):
+        Carousel.objects.all().update(is_active=None)
+        Carousel.objects.filter(carousel_num=0).update(is_active='active')
+        context = super(GetContentMixin, self).get_context_data(**kwargs)
+        context['carousel_model'] = self.mixin_model.objects.all().order_by('carousel_num')
+        return context
+
+
+# since the template extends the base which requires a form, we need to create a mixin to define the form
+# so the form data can be passed since we hid them and only display them when they try contact them because it is a modal form
+class FormMixin(forms.Form):
+    form_class = ContactMeForm
+
+
+# class instead to speed up production
+# NOTE: using the mixin for the form and content
+class Index3(GetContentMixin, FormMixin, FormView):
+    template_name = "portfolio/index2.html" # define the template to use
+
+
+class gallery3(GetContentMixin, FormMixin, FormView):
+    template_name = "portfolio/gallery.html" # define the template to use
+
+
+# Function Based views
 
 def thankyou(request):
     form = ContactMeForm(request.POST or None)
 
     if form.is_valid():  # ensure the form has clean data passed
-
         save_it = form.save(commit=False)
-        # save_it.save()
+
+        # save_it.save() # since we are not storing this in the DB no need to save
+
         # send email
         subject = 'Message from Client'
         message = form.cleaned_data['message']
@@ -38,28 +72,5 @@ def index2(request):
     # return render(request, "portfolio/index2.html",  {'form': ContactMeForm()})
 
 
-def index3(request):
-    if request.method == 'POST':
-        form = ContactMeForm(request.POST)  # if post then capture all that data and store it in an object
-        if form.is_valid():  # ensure the form has clean data passed
-            print(form.cleaned_data['senderEmail'])
-            print(form.cleaned_data['message'])
-
-    else:
-        pass
-
-    return render(request, "portfolio/index3.html", {'form': ContactMeForm()})
-
-
-def contactMeLogic(request):
-    if request.method == 'POST':
-        form = ContactMeForm(request.POST)  # if post then capture all that data and store it in an object
-        if form.is_valid():  # ensure the form has clean data passed
-            print(form.cleaned_data['senderEmail'])
-            print(form.cleaned_data['message'])
-            print('add logic to send email')
-
-
 def gallery(request):
-    contactMeLogic(request)
     return render(request, "portfolio/gallery.html", {'form': ContactMeForm()})
