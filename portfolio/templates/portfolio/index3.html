@@ -1,24 +1,18 @@
-{% extends 'portfolio/base.html' %}
-{% load static %}
-
-{% block content %}
-xxxxxxxxxxxxxxxxxxxxxxx
-<div class="container">
-
-    {{ form.senderEmail }}
-
-    		      {% for value in carousel_model %}
-
-				    {{ value.image }}
-                  {% endfor %}
+aaaaa {{ def_1_val }}
 
 
-</div>
-yyyyyyyyy
+<hr>
 
-  		{% include  'portfolio/myCarousel2.html' %}
-  		{% include  'portfolio/marketing.html' %}
-  		{% include  'portfolio/featurettes.html' %}
-  		{% include  'portfolio/footer.html' %}
+{% for i in def_list %}
 
-{% endblock %}
+my list is :{{ i }} <br>
+
+{% endfor %}
+
+
+<hr>
+
+<h2>p1</h2>
+p1: {{ p1 }}<br>
+name: {{ p1.name }}<br>
+age: {{ p1.age }}<br>

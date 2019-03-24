@@ -6,7 +6,7 @@ from .models import Carousel
 from .forms import ContactMeForm
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
-
+from .utilities import def_1_val, def_list, p1
 
 
 # use content mixin instead since we are expanding the base and just need to call the template vs having to explictly
@@ -74,3 +74,8 @@ def index2(request):
 
 def gallery(request):
     return render(request, "portfolio/gallery.html", {'form': ContactMeForm()})
+
+def index3(request):
+    stuff_for_frontend = {'def_1_val': def_1_val, 'def_list': def_list, 'p1': p1}
+    return render(request, "portfolio/index3.html", stuff_for_frontend)
+    # return render(request, "portfolio/index3.html")
