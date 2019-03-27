@@ -15,13 +15,17 @@ urlpatterns = [
     path("gallery", GalleryView.as_view(), name="gallery"),
     path("gallery3", GalleryView.as_view(), name="gallery3"),
     path("thankyou", views.thankyou, name="thankyou"),
+    path("myAjax/<str:ticker>", views.myAjax, name="myAjax"),
+
+
+
     url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# if settings.DEBUG:
-# urlpatterns += staticfiles_urlpatterns()
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -6,7 +6,38 @@ from .models import Carousel
 from .forms import ContactMeForm
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
-from .utilities import def_1_val, def_list, p1
+from .utilities import def_1_val, def_list, p1, Person
+
+
+
+from django.http import JsonResponse
+
+def myAjax(request, ticker):
+    j1 = 'test J1'
+    j2 = 'test J2'
+    j3 = 'test J3 xx'
+    # test = [{"id": 1}, {"id": 2}, {"id": 3}]
+
+    a1 = Person(ticker, 55)
+    print(p1)
+    print(p1.name)
+    print(p1.age)
+    print(p1.jsonReturn())
+    test = a1.jsonReturn()
+    # test = {"id": 1}
+    # data = request.GET.get['value']
+
+    print('name................', request.method)
+    print('data................', request)
+    print('data................', ticker)
+    sampleJson = 	{'color': "red"}
+        # ,{'color': "green"}
+
+    return JsonResponse(test, safe=False)
+    # stuff_for_frontend = {'def_1_val': def_1_val, 'def_list': def_list, 'p1': p1}
+    # return render(request, "portfolio/index3.html", stuff_for_frontend)
+
+
 
 
 # use content mixin instead since we are expanding the base and just need to call the template vs having to explictly
