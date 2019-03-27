@@ -8,7 +8,7 @@ function myFunction() {
 
       $.ajax({
             type: 'GET',
-            url: 'http://127.0.0.1:8000/myAjax/' + myText.val(),
+            url: '/myAjax/' + myText.val(),
 //            url: 'http://127.0.0.1:8000/myAjax/',
             data: {'id': 'id', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
             dataType: 'json',
